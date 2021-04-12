@@ -1,0 +1,23 @@
+﻿@page
+@using Nacho.JuanAlvarez.Localization
+@using Microsoft.Extensions.Localization
+@using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Modal
+@using Nacho.JuanAlvarez.Web.Pages.Empleados
+@model CreateModalModel
+@inject IStringLocalizer<JuanAlvarezResource> L
+@{
+    Layout = null;
+}
+<abp-dynamic-form abp-model="Empleado" asp-page="/Empleados/CreateModal">
+    <abp-modal>
+        <abp-modal-header title="@L["NewEmpleado"].Value"></abp-modal-header>
+        <abp-modal-body>
+            <abp-form-content>
+                <abp-button id="SubirArchivo"
+                            text="@L["SubirArchivo"].Value"
+                            icon="upload"
+                            button-type="Success" />
+        </abp-modal-body>
+        <abp-modal-footer buttons="@(AbpModalButtons.Cancel|AbpModalButtons.Save)"></abp-modal-footer>
+    </abp-modal>
+</abp-dynamic-form>
