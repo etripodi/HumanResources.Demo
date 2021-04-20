@@ -3,37 +3,33 @@ using System.IO;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Nacho.JuanAlvarez.Empleados;
 using Nacho.JuanAlvarez.FileStorage;
+using Volo.Abp.AspNetCore.Mvc.UI.RazorPages;
 
 namespace Nacho.JuanAlvarez.Web.Pages.Empleados
 {
-    public class CreateModalModel : JuanAlvarezPageModel
+    public class File : AbpPageModel
     {
         [BindProperty]
-        public UploadFileDto UploadFileDto { get; set; }
-        public bool Uploaded { get; set; } = false;
+        public UploadFileDtos UploadFileDto { get; set; }
+
         private readonly IFileAppService _fileAppService;
-        
-        [BindProperty]
-        public CreateUpdateEmpleadoDto Empleado { get; set; }
 
-        private readonly IEmpleadoAppService _empleadoAppService;
+        public bool Uploaded { get; set; } = false;
 
-        public CreateModalModel(IEmpleadoAppService empleadoAppService, IFileAppService fileAppService)
+        public File(IFileAppService fileAppService)
         {
-            _empleadoAppService = empleadoAppService;
             _fileAppService = fileAppService;
         }
 
         public void OnGet()
         {
-            Empleado = new CreateUpdateEmpleadoDto();
+
         }
 
         public async Task<IActionResult> OnPostAsync()
         {
-            await using (var memoryStream = new MemoryStream())
+            using (var memoryStream = new MemoryStream())
             {
                 await UploadFileDto.File.CopyToAsync(memoryStream);
 
@@ -45,14 +41,12 @@ namespace Nacho.JuanAlvarez.Web.Pages.Empleados
                     }
                 );
             }
-            
-            await _empleadoAppService.CreateAsync(Empleado);
-            
+
             return Page();
         }
     }
 
-    public class UploadFileDto
+    public class UploadFileDtos
     {
         [Required]
         [Display(Name = "File")]

@@ -8,16 +8,43 @@
 @{
     Layout = null;
 }
+
+@section scripts{
+    <abp-script src="/Pages/index.js"></abp-script>
+}
+
 <abp-dynamic-form abp-model="Empleado" asp-page="/Empleados/CreateModal">
     <abp-modal>
         <abp-modal-header title="@L["NewEmpleado"].Value"></abp-modal-header>
         <abp-modal-body>
-            <abp-form-content>
-                <abp-button id="SubirArchivo"
-                            text="@L["SubirArchivo"].Value"
-                            icon="upload"
-                            button-type="Success" />
+            <abp-form-content/>
+
+            <abp-column>
+                <h3>Upload File</h3>
+                <hr/>
+                <form method="post" enctype="multipart/form-data">
+                    <abp-input asp-for="UploadFileDto.Name"></abp-input>
+
+                    <abp-input asp-for="UploadFileDto.File"></abp-input>
+
+                    <input type="submit" class="btn btn-info"/>
+                </form>
+            </abp-column>
+
+            @*<abp-column style="border-left: 1px dotted gray"> Luego borrar
+                <h3>Download File</h3>
+                <hr/>
+                <form id="DownloadFile">
+                    <div class="form-group">
+                        <label for="fileName">Filename</label><span> * </span>
+                        <input type="text" id="fileName" name="fileName" class="form-control ">
+                    </div>
+
+                    <input type="submit" class="btn btn-info"/>
+                </form>
+            </abp-column>*@
+
         </abp-modal-body>
-        <abp-modal-footer buttons="@(AbpModalButtons.Cancel|AbpModalButtons.Save)"></abp-modal-footer>
+        <abp-modal-footer buttons="@(AbpModalButtons.Cancel | AbpModalButtons.Save)"></abp-modal-footer>
     </abp-modal>
 </abp-dynamic-form>

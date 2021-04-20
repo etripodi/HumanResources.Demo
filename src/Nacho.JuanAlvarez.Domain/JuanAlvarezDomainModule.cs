@@ -1,4 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Nacho.JuanAlvarez.MultiTenancy;
 using Volo.Abp.AuditLogging;
@@ -13,6 +13,7 @@ using Volo.Abp.PermissionManagement.Identity;
 using Volo.Abp.PermissionManagement.IdentityServer;
 using Volo.Abp.SettingManagement;
 using Volo.Abp.TenantManagement;
+using Volo.Abp.BlobStoring.Database;
 
 namespace Nacho.JuanAlvarez
 {
@@ -29,6 +30,7 @@ namespace Nacho.JuanAlvarez
         typeof(AbpTenantManagementDomainModule),
         typeof(AbpEmailingModule)
     )]
+    [DependsOn(typeof(BlobStoringDatabaseDomainModule))]
     public class JuanAlvarezDomainModule : AbpModule
     {
         public override void ConfigureServices(ServiceConfigurationContext context)
