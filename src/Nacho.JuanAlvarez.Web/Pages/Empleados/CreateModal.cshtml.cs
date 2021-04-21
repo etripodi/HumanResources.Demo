@@ -55,11 +55,11 @@ namespace Nacho.JuanAlvarez.Web.Pages.Empleados
     public class UploadFileDto
     {
         [Required]
-        [Display(Name = "File")]
+        [Display(Name = "Archivo")]
         public IFormFile File { get; set; }
 
         [Required]
-        [Display(Name = "Filename")]
+        [Display(Name = "Nombre de archivo")]
         public string Name { get; set; }
     }
 }

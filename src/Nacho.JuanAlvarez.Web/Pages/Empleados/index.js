@@ -65,6 +65,10 @@
                     }
                 },
                 {
+                    title: l('id'),
+                    data: "id" 
+                },
+                {
                     title: l('NombreApellido'),
                     data: "nombreApellido"
                 },
@@ -134,6 +138,17 @@
                     data: "valoracion",
                     render: function (data) {
                         return l('Enum:EmpleadoValoracion:' + data);
+                    }
+                },
+                {
+                    title: l('CV'),
+                    rowAction: {
+                        items: [{
+                            text: l['CV'],
+                            action: function (data) {
+                                
+                            }
+                        }]
                     }
                 }
 

@@ -5,6 +5,7 @@ namespace Nacho.JuanAlvarez.Empleados
 {
     public class Empleado : AuditedAggregateRoot<Guid>
     {
+        public Guid Id { get; set; }
         public string NombreApellido { get; set; }
 
         public string Mail { get; set; }
