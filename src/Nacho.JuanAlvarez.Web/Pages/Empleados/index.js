@@ -31,7 +31,7 @@
             serverSide: true,
             paging: true,
             order: [[1, "asc"]],
-            searching: true,
+            searching: false,
             scrollX: true,
             ajax: abp.libs.datatables.createAjax(nacho.juanAlvarez.empleados.empleado.getList),
             columnDefs: [
@@ -177,14 +177,14 @@
     }
 
     $("#paisFilter").on('keyup change', function () {
-        loadFilters(this.value, 4);
+        loadFilters(this.value, 4 /*Column index*/);
     });
 
     $("#areaFilter").on('keyup change', function () {
-        loadFilters(this.value, 7);
+        loadFilters(this.value, 7 /*Column index*/);
     });
 
     $("#nroBusquedaFilter").on('keyup change', function () {
-        loadFilters(this.value, 6);
+        loadFilters(this.value, 6 /*Column index*/);
     });
 });
